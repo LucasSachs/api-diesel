@@ -1,5 +1,6 @@
-import { JoinColumn, ManyToOne } from 'typeorm'
+import { JoinColumn, ManyToOne, OneToOne } from 'typeorm'
 import { Cidade } from '../cidade/cidade.entity'
+import { Propriedade } from '../propriedade/propriedade.entity'
 import { Uf } from '../uf/uf.entity'
 
 export class EnderecoRelations {
@@ -10,4 +11,7 @@ export class EnderecoRelations {
   @ManyToOne(() => Uf, uf => uf.enderecos)
   @JoinColumn({ name: 'uf_id' })
   uf: Uf
+
+  @OneToOne(() => Propriedade, propriedade => propriedade.endereco)
+  propriedade: Propriedade
 }
