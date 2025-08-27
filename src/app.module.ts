@@ -3,7 +3,6 @@ import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { AuthModule } from './auth/auth.module'
 import { databaseConnectionConfig } from './database/connection'
-import { DatabaseSeederModule } from './lib/seeder/seeder.module'
 import { UsuarioModule } from './resource/usuario/usuario.module'
 
 @Module({
@@ -13,8 +12,6 @@ import { UsuarioModule } from './resource/usuario/usuario.module'
 
     UsuarioModule,
     AuthModule,
-
-    DatabaseSeederModule,
   ],
 })
 export class AppModule {}
