@@ -1,7 +1,7 @@
 import { Body, Controller, HttpCode, HttpStatus, Post, UnauthorizedException } from '@nestjs/common'
 import { verify } from 'argon2'
 import { TokenService } from 'src/lib/token/token.service'
-import type { UsuarioService } from 'src/resource/usuario/usuario.service'
+import { UsuarioService } from 'src/resource/usuario/usuario.service'
 import { Public } from './decorators/metadata/public.decorator'
 import { LoginDto } from './dtos/login.dto'
 import type { UserAccessToken } from './utils/auth.types'
@@ -18,10 +18,7 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   async loginWithCredentials(@Body() body: LoginDto) {
     // Get the user that is trying to login
-    const user = await this.usuarioService.findOne({
-      where: { email: body.email },
-      relations: ['session'],
-    })
+    const user = await this.usuarioService.findOne({ where: { email: body.email } })
     if (!user) throw new UnauthorizedException()
 
     // Verify if the password from body coincides with the password stored in the database

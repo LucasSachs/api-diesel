@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common'
-import { ConfigService } from '@nestjs/config'
 import { JwtService, JwtVerifyOptions } from '@nestjs/jwt'
 import type { UserAccessToken } from 'src/auth/utils/auth.types'
 import { InvalidTokenException } from './errors/token.exception.invalid'
@@ -11,7 +10,6 @@ export const PRIVATE_KEY = process.env.PRIVATE_KEY
 export class TokenService {
   constructor(
     private readonly jwtService: JwtService,
-    private readonly configService: ConfigService,
   ) {}
 
   async verifyToken(token: string, options?: JwtVerifyOptions) {
