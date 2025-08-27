@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { JwtService, JwtVerifyOptions } from '@nestjs/jwt'
+import 'dotenv/config'
 import type { UserAccessToken } from 'src/auth/utils/auth.types'
 import { InvalidTokenException } from './errors/token.exception.invalid'
 

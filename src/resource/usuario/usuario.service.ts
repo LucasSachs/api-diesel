@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Usuario } from 'src/database/entities/usuario/usuario.entity'
-import type { FindOneOptions, Repository } from 'typeorm'
+import type { DeepPartial, FindOneOptions, Repository } from 'typeorm'
 
 @Injectable()
 export class UsuarioService {
@@ -10,7 +10,12 @@ export class UsuarioService {
   ) {}
 
   async findOne(filter: FindOneOptions<Usuario>) {
-    const usuario = await this.usuarioRepository.findOne(filter)
-    return usuario
+    const user = await this.usuarioRepository.findOne(filter)
+    return user
+  }
+
+  async save(user: DeepPartial<Usuario>) {
+    const saved_user = this.usuarioRepository.save(user)
+    return saved_user
   }
 }
