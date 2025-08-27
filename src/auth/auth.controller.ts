@@ -27,6 +27,8 @@ export class AuthController {
 
     const payload: Omit<UserAccessToken, 'iat' | 'exp'> = {
       user_id: user.id,
+      name: user.nome,
+      email: user.email,
     }
 
     const access_token = await this.tokenService.generateSessionToken(payload)
