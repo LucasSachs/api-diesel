@@ -16,7 +16,7 @@ enum Status {
 
 @Entity()
 export class OrdemServico extends OrdemServicoRelations {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ unsigned: true })
   id: number
 
   @Column({ unsigned: true })

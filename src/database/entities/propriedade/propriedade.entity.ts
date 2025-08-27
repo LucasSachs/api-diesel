@@ -3,7 +3,7 @@ import { PropriedadeRelations } from './propriedade.relations'
 
 @Entity()
 export class Propriedade extends PropriedadeRelations {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ unsigned: true })
   id: number
 
   @Column({ unsigned: true })

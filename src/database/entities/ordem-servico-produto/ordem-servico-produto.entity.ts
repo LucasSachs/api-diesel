@@ -3,7 +3,7 @@ import { OrdemServicoProdutoRelations } from './ordem-servico-produto.relations'
 
 @Entity()
 export class OrdemServicoProduto extends OrdemServicoProdutoRelations {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ unsigned: true })
   id: number
 
   @Column({ unsigned: true })

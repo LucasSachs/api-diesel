@@ -3,7 +3,7 @@ import { EnderecoRelations } from './endereco.relations'
 
 @Entity()
 export class Endereco extends EnderecoRelations {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ unsigned: true })
   id: number
 
   @Column({ unsigned: true })

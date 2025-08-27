@@ -3,7 +3,7 @@ import { NotaRelations } from './nota.relations'
 
 @Entity()
 export class Nota extends NotaRelations {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ unsigned: true })
   id: number
 
   @Column({ unsigned: true })

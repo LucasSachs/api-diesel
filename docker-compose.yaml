@@ -1,0 +1,12 @@
+version: '1'
+
+services:
+  mysql:
+    image: bitnami/mysql:latest
+    environment:
+      - MYSQL_USER=diesel
+      - MYSQL_PASSWORD=diesel
+      - MYSQL_DATABASE=diesel
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - "3306:3306"

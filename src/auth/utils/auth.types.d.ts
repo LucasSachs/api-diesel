@@ -1,5 +1,5 @@
 export interface UserAccessToken {
-  id: string
+  user_id: number
   iat: number
   exp: number
 }

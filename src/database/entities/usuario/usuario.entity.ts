@@ -13,7 +13,7 @@ export enum Status {
 
 @Entity()
 export class Usuario extends UsuarioRelations {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ unsigned: true })
   id: number
 
   @CreateDateColumn()

@@ -3,7 +3,7 @@ import { ProdutoRelations } from './produto.relations'
 
 @Entity()
 export class Produto extends ProdutoRelations {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ unsigned: true })
   id: number
 
   @CreateDateColumn()

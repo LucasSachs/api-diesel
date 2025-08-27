@@ -3,7 +3,7 @@ import { ClienteEmailRelations } from './cliente-email.relations'
 
 @Entity()
 export class ClienteEmail extends ClienteEmailRelations {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ unsigned: true })
   id: number
 
   @Column({ unsigned: true })

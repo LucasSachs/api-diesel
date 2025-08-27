@@ -3,7 +3,7 @@ import { UfRelations } from './uf.relations'
 
 @Entity()
 export class Uf extends UfRelations {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ unsigned: true })
   id: number
 
   @Column({

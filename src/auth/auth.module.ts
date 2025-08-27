@@ -1,18 +1,14 @@
 import { Module } from '@nestjs/common'
 import { APP_GUARD } from '@nestjs/core'
 import { JwtService } from '@nestjs/jwt'
-import { SessionModule } from 'src/app/session/session.module'
-import { UserModule } from 'src/app/user/user.module'
 import { TokenService } from 'src/lib/token/token.service'
+import { UsuarioModule } from 'src/resource/usuario/usuario.module'
 import { AuthController } from './auth.controller'
 import { AuthGuard } from './guards/auth.guard'
 
 @Module({
   controllers: [AuthController],
-  imports: [
-    UserModule,
-    SessionModule,
-  ],
+  imports: [UsuarioModule],
   providers: [
     JwtService,
     TokenService,
