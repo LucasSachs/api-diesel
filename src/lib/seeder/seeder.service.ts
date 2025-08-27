@@ -21,7 +21,7 @@ export class DatabaseSeederService {
           cargo: Cargo.COLABORADOR,
           email: faker.internet.email({ firstName, lastName }).toLowerCase(),
           nome: faker.person.fullName({ firstName, lastName }),
-          rg: '',
+          rg: String(faker.number.int({ min: 100000000, max: 999999999 })),
           senha: await hash('senha123'),
           status: index > 2 ? Status.INATIVO : Status.ATIVO,
         }
@@ -39,7 +39,7 @@ export class DatabaseSeederService {
         cargo: Cargo.ADMINISTRADOR,
         email: faker.internet.email({ firstName, lastName }).toLowerCase(),
         nome: faker.person.fullName({ firstName, lastName }),
-        rg: '',
+        rg: String(faker.number.int({ min: 100000000, max: 999999999 })),
         senha: await hash('senha123'),
         status: Status.ATIVO,
       }
@@ -47,7 +47,7 @@ export class DatabaseSeederService {
       return funcionario
     })()
 
-    console.log(funcionarios, administrador)
+    console.log(funcionarios, '\n\n\n\n\n', administrador)
 
     // await this.usuarioService.save(user)
   }
