@@ -29,6 +29,7 @@ export class AuthController {
       user_id: user.id,
       name: user.nome,
       email: user.email,
+      role: user.cargo,
     }
 
     const access_token = await this.tokenService.generateSessionToken(payload)
