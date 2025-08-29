@@ -23,7 +23,7 @@ export class RolesGuard implements CanActivate {
 
     // Check if the user is allowed to take the action
     const allow = this.validateRoles(allowed_roles, user_role)
-    if (!allow) throw new UnauthorizedException()
+    if (!allow) throw new UnauthorizedException('The access to this endpoint is restricted')
 
     return true
   }
