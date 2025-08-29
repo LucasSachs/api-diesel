@@ -1,13 +1,29 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Usuario } from 'src/database/entities/usuario/usuario.entity'
-import type { DeepPartial, FindOneOptions, Repository } from 'typeorm'
+import { ILike, Like, type DeepPartial, type FindManyOptions, type FindOneOptions, type FindOptionsWhere, type Repository } from 'typeorm'
 
 @Injectable()
 export class UsuarioService {
   constructor(
     @InjectRepository(Usuario) private readonly usuarioRepository: Repository<Usuario>,
   ) {}
+
+  async get(filters: FindManyOptions<Usuario>) {
+    const whereOptions = filters.where as FindOptionsWhere<Usuario>
+
+    const users = await this.usuarioRepository.find({
+      ...filters,
+      where: {
+        ...whereOptions,
+        nome: whereOptions.nome ? ILike(`%${whereOptions.nome}%`) : undefined,
+        email: whereOptions.email ? ILike(`%${whereOptions.email}%`) : undefined,
+        rg: whereOptions.rg ? Like(`%${whereOptions.rg}%`) : undefined,
+      },
+    })
+
+    return users
+  }
 
   async findOne(filter: FindOneOptions<Usuario>) {
     const user = await this.usuarioRepository.findOne(filter)
