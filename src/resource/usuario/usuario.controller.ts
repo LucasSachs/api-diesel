@@ -1,6 +1,6 @@
-import { Controller } from '@nestjs/common'
-import { SessionUser } from 'src/auth/decorators/user.decorator'
-import type { Usuario } from 'src/database/entities/usuario/usuario.entity'
+import { Body, Controller, Post } from '@nestjs/common'
+import { omit } from 'lodash'
+import { CreateUserDto } from './dto/create-user'
 import { UsuarioService } from './usuario.service'
 
 @Controller('usuario')
@@ -9,9 +9,10 @@ export class UsuarioController {
     private readonly usuarioService: UsuarioService,
   ) {}
 
-  async getUserSession(
-    @SessionUser() sessionUser: Usuario,
-  ) {
-    console.log(sessionUser)
+  @Post()
+  async createNewUser(@Body() newUser: CreateUserDto) {
+    const newCreatedUser = await this.usuarioService.save(newUser)
+    const newUserWithouPassword = omit(newCreatedUser, ['senha'])
+    return newUserWithouPassword
   }
 }

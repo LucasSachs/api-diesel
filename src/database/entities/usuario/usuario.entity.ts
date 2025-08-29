@@ -39,13 +39,14 @@ export class Usuario extends UsuarioRelations {
 
   @Column({
     type: 'varchar',
-    length: 10,
+    length: 9,
   })
   rg: string
 
   @Column({
     type: 'varchar',
     length: 255,
+    nullable: true,
   })
   senha: string
 
