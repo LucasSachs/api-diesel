@@ -1,8 +1,11 @@
-import { Body, Controller, HttpCode, HttpStatus, Post, UnauthorizedException } from '@nestjs/common'
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, UnauthorizedException } from '@nestjs/common'
 import { verify } from 'argon2'
+import { omit } from 'lodash'
+import type { Usuario } from 'src/database/entities/usuario/usuario.entity'
 import { TokenService } from 'src/lib/token/token.service'
 import { UsuarioService } from 'src/resource/usuario/usuario.service'
 import { Public } from './decorators/metadata/public.decorator'
+import { SessionUser } from './decorators/user.decorator'
 import { LoginDto } from './dtos/login.dto'
 import type { UserAccessToken } from './utils/auth.types'
 
@@ -16,7 +19,9 @@ export class AuthController {
   @Post('/login')
   @Public()
   @HttpCode(HttpStatus.OK)
-  async loginWithCredentials(@Body() body: LoginDto) {
+  async loginWithCredentials(
+    @Body() body: LoginDto,
+  ) {
     // Get the user that is trying to login
     const user = await this.usuarioService.findOne({ where: { email: body.email } })
     if (!user) throw new UnauthorizedException()
@@ -34,5 +39,12 @@ export class AuthController {
 
     const access_token = await this.tokenService.generateSessionToken(payload)
     return { access_token }
+  }
+
+  @Get()
+  async getLoggedUser(
+    @SessionUser() sessionUser: Usuario,
+  ) {
+    return omit(sessionUser, ['senha'])
   }
 }
