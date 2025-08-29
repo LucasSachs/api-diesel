@@ -20,7 +20,7 @@ export class UsuarioService {
   }
 
   async save(user: DeepPartial<Usuario>) {
-    const saved_user = this.usuarioRepository.save(user)
-    return saved_user
+    const savedUser = await this.usuarioRepository.save(user)
+    return savedUser
   }
 }
