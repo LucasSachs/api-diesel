@@ -14,6 +14,11 @@ export class UsuarioService {
     return user
   }
 
+  async insert(users: DeepPartial<Usuario> | DeepPartial<Usuario>[]) {
+    const insertedIds = await this.usuarioRepository.insert(users)
+    return insertedIds
+  }
+
   async save(user: DeepPartial<Usuario>) {
     const saved_user = this.usuarioRepository.save(user)
     return saved_user

@@ -47,8 +47,6 @@ export class DatabaseSeederService {
       return funcionario
     })()
 
-    console.log(funcionarios, '\n\n\n\n\n', administrador)
-
-    // await this.usuarioService.save(user)
+    await this.usuarioService.insert(funcionarios.concat(administrador))
   }
 }
