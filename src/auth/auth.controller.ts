@@ -54,6 +54,7 @@ export class AuthController {
   async getLoggedUser(
     @SessionUser() sessionUser: Usuario,
   ) {
-    return omit(sessionUser, ['senha'])
+    const sessionUserWithoutPassword = omit(sessionUser, ['senha'])
+    return sessionUserWithoutPassword
   }
 }

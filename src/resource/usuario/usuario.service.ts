@@ -23,4 +23,9 @@ export class UsuarioService {
     const savedUser = await this.usuarioRepository.save(user)
     return savedUser
   }
+
+  async delete(id: number) {
+    const deletedUser = await this.usuarioRepository.delete(id)
+    return deletedUser
+  }
 }

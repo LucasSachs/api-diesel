@@ -1,7 +1,8 @@
-import { Body, Controller, Post, Put } from '@nestjs/common'
+import { Body, Controller, Delete, NotFoundException, Post, Put } from '@nestjs/common'
 import { hash } from 'argon2'
 import { omit } from 'lodash'
 import { CreateUserDto } from './dto/create-user'
+import { DeleteUserDto } from './dto/delete-user'
 import { UpdateUserDto } from './dto/update-user.dto'
 import { UsuarioService } from './usuario.service'
 
@@ -15,6 +16,7 @@ export class UsuarioController {
   async createNewUser(@Body() newUser: CreateUserDto) {
     const newCreatedUser = await this.usuarioService.save(newUser)
     const newUserWithouPassword = omit(newCreatedUser, ['senha'])
+
     return newUserWithouPassword
   }
 
@@ -25,6 +27,15 @@ export class UsuarioController {
 
     const newUpdatedUser = await this.usuarioService.save(updatedUser)
     const newUpdatedUserWithoutPassword = omit(newUpdatedUser, ['senha'])
+
     return newUpdatedUserWithoutPassword
+  }
+
+  @Delete()
+  async deleteUser(@Body() { id }: DeleteUserDto) {
+    const deletedUser = await this.usuarioService.delete(id)
+
+    const success = Boolean(deletedUser.affected)
+    if (!success) throw new NotFoundException('No user deleted')
   }
 }
