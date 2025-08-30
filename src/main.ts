@@ -8,6 +8,7 @@ async function bootstrap() {
 
   // Validation pipe
   app.useGlobalPipes(new ValidationPipe({
+    transform: true,
     whitelist: true, // Remove fields that are not mapped in the DTO
   }))
 

@@ -1,9 +1,9 @@
 import { Body, Controller, Delete, Get, NotFoundException, Post, Put, Query } from '@nestjs/common'
 import { hash } from 'argon2'
 import { omit } from 'lodash'
-import { CreateUserDto } from './dto/create-user'
-import { DeleteUserDto } from './dto/delete-user'
-import { GetUserDto } from './dto/get-user'
+import { CreateUserDto } from './dto/create-user.dto'
+import { DeleteUserDto } from './dto/delete-user.dto'
+import { GetUserDto } from './dto/get-user.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
 import { UsuarioService } from './usuario.service'
 
@@ -14,7 +14,7 @@ export class UsuarioController {
   ) {}
 
   @Get()
-  async getUser(@Query() user: GetUserDto) {
+  async getUsers(@Query() user: GetUserDto) {
     const users = await this.usuarioService.get({ where: user })
 
     return users
@@ -23,9 +23,9 @@ export class UsuarioController {
   @Post()
   async createNewUser(@Body() newUser: CreateUserDto) {
     const newCreatedUser = await this.usuarioService.save(newUser)
-    const newUserWithouPassword = omit(newCreatedUser, ['senha'])
+    const newUserWithoutPassword = omit(newCreatedUser, ['senha'])
 
-    return newUserWithouPassword
+    return newUserWithoutPassword
   }
 
   @Put()

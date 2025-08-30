@@ -9,8 +9,11 @@ export class Produto extends ProdutoRelations {
   @CreateDateColumn()
   created_at: Date
 
-  @Column({ type: 'text' })
-  descricao: string
+  @Column({
+    type: 'text',
+    nullable: true,
+  })
+  descricao?: string
 
   @Column({
     type: 'varchar',
@@ -18,6 +21,9 @@ export class Produto extends ProdutoRelations {
   })
   nome: string
 
-  @Column({ unsigned: true })
-  tamanho_tanque: number
+  @Column({
+    unsigned: true,
+    nullable: true,
+  })
+  tamanho_tanque?: number
 }

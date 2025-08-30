@@ -19,6 +19,7 @@ export class UsuarioService {
         nome: whereOptions.nome ? ILike(`%${whereOptions.nome}%`) : undefined,
         email: whereOptions.email ? ILike(`%${whereOptions.email}%`) : undefined,
         rg: whereOptions.rg ? Like(`%${whereOptions.rg}%`) : undefined,
+        cpf: whereOptions.cpf ? Like(`%${whereOptions.cpf}%`) : undefined,
       },
     })
 
@@ -27,21 +28,25 @@ export class UsuarioService {
 
   async findOne(filter: FindOneOptions<Usuario>) {
     const user = await this.usuarioRepository.findOne(filter)
+
     return user
   }
 
   async insert(users: DeepPartial<Usuario> | DeepPartial<Usuario>[]) {
     const insertedIds = await this.usuarioRepository.insert(users)
+
     return insertedIds
   }
 
   async save(user: DeepPartial<Usuario>) {
     const savedUser = await this.usuarioRepository.save(user)
+
     return savedUser
   }
 
   async delete(id: number) {
     const deletedUser = await this.usuarioRepository.delete(id)
+
     return deletedUser
   }
 }

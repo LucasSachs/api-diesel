@@ -37,6 +37,9 @@ export class Usuario extends UsuarioRelations {
   })
   nome: string
 
+  @Column({ type: 'date' })
+  data_nascimento: Date
+
   @Column({
     type: 'varchar',
     length: 9,
@@ -45,10 +48,16 @@ export class Usuario extends UsuarioRelations {
 
   @Column({
     type: 'varchar',
+    length: 11,
+  })
+  cpf: string
+
+  @Column({
+    type: 'varchar',
     length: 255,
     nullable: true,
   })
-  senha: string
+  senha?: string
 
   @Column({
     type: 'enum',

@@ -24,6 +24,8 @@ export class DatabaseSeederService {
           rg: String(faker.number.int({ min: 100000000, max: 999999999 })),
           senha: await hash('senha123'),
           status: index > 2 ? Status.INATIVO : Status.ATIVO,
+          cpf: String(faker.number.int({ min: 10000000000, max: 99999999999 })),
+          data_nascimento: faker.date.birthdate(),
         }
 
         return funcionario
@@ -42,6 +44,8 @@ export class DatabaseSeederService {
         rg: String(faker.number.int({ min: 100000000, max: 999999999 })),
         senha: await hash('senha123'),
         status: Status.ATIVO,
+        cpf: String(faker.number.int({ min: 10000000000, max: 99999999999 })),
+        data_nascimento: faker.date.birthdate(),
       }
 
       return funcionario
