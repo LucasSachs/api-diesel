@@ -15,7 +15,7 @@ export class UsuarioController {
 
   @Get()
   async getUsers(@Query() user: GetUserDto) {
-    const users = await this.usuarioService.get({ where: user })
+    const users = await this.usuarioService.find({ where: user })
 
     return users
   }

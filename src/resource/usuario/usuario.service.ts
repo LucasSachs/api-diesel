@@ -9,7 +9,7 @@ export class UsuarioService {
     @InjectRepository(Usuario) private readonly usuarioRepository: Repository<Usuario>,
   ) {}
 
-  async get(filters: FindManyOptions<Usuario>) {
+  async find(filters: FindManyOptions<Usuario>) {
     const whereOptions = filters.where as FindOptionsWhere<Usuario>
 
     const users = await this.usuarioRepository.find({
