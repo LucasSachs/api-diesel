@@ -12,12 +12,12 @@ export class Cliente extends ClienteRelations {
   })
   cpf_cnpj: string
 
-  @CreateDateColumn()
-  created_at: Date
-
   @Column({
     type: 'varchar',
     length: 255,
   })
   nome: string
+
+  @CreateDateColumn()
+  created_at: Date
 }

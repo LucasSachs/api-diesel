@@ -1,7 +1,7 @@
 import { IsEmail, IsEnum, IsISO8601, Length } from 'class-validator'
-import { Cargo, Status, type Usuario } from 'src/database/entities/usuario/usuario.entity'
+import { Cargo, Status } from 'src/database/entities/usuario/usuario.entity'
 
-export class CreateUserDto implements Partial<Usuario> {
+export class CreateUserDto {
   @IsEnum(Cargo)
   cargo: Cargo
 

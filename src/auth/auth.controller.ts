@@ -18,6 +18,14 @@ export class AuthController {
     private readonly configService: ConfigService,
   ) {}
 
+  @Get()
+  async getLoggedUser(
+    @SessionUser() sessionUser: Usuario,
+  ) {
+    const sessionUserWithoutPassword = omit(sessionUser, ['senha'])
+    return sessionUserWithoutPassword
+  }
+
   @Post('/login')
   @Public()
   @HttpCode(HttpStatus.OK)
@@ -48,13 +56,5 @@ export class AuthController {
 
     const access_token = await this.tokenService.generateSessionToken(payload)
     return { access_token }
-  }
-
-  @Get()
-  async getLoggedUser(
-    @SessionUser() sessionUser: Usuario,
-  ) {
-    const sessionUserWithoutPassword = omit(sessionUser, ['senha'])
-    return sessionUserWithoutPassword
   }
 }

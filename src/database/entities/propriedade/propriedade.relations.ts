@@ -7,6 +7,7 @@ export class PropriedadeRelations {
   @JoinColumn({ name: 'cliente_id' })
   cliente: Cliente
 
-  @OneToOne(() => Endereco, endereco => endereco.propriedade)
+  @OneToOne(() => Endereco, endereco => endereco.propriedade, { cascade: true })
+  @JoinColumn({ name: 'endereco_id' })
   endereco: Endereco
 }

@@ -3,8 +3,11 @@ import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { AuthModule } from './auth/auth.module'
 import { databaseConnectionConfig } from './database/connection'
+import { ClienteModule } from './resource/cliente/cliente.module'
+import { ProdutoModule } from './resource/produto/produto.module'
 import { UsuarioModule } from './resource/usuario/usuario.module'
-import { ProdutoModule } from './resource/produto/produto.module';
+import { CidadeModule } from './resource/cidade/cidade.module';
+import { UfModule } from './resource/uf/uf.module';
 
 @Module({
   imports: [
@@ -14,6 +17,9 @@ import { ProdutoModule } from './resource/produto/produto.module';
     UsuarioModule,
     AuthModule,
     ProdutoModule,
+    ClienteModule,
+    CidadeModule,
+    UfModule,
   ],
 })
 export class AppModule {}

@@ -1,7 +1,6 @@
 import { IsOptional, IsPositive, Length } from 'class-validator'
-import type { Produto } from 'src/database/entities/produto/produto.entity'
 
-export class CreateProdutoDto implements Partial<Produto> {
+export class CreateProdutoDto {
   @Length(3, 255)
   nome: string
 

@@ -24,7 +24,7 @@ export class Endereco extends EnderecoRelations {
     length: 255,
     nullable: true,
   })
-  complemento: string
+  complemento?: string
 
   @Column()
   lat: number

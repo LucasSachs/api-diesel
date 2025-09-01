@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, NotFoundException, Post, Put, Query } from '@nestjs/common'
-import { CreateProdutoDto } from './dto/create-produto.dto'
-import { DeleteProdutoDto } from './dto/delete-produto.dto'
-import { GetProdutoDto } from './dto/get-produto.dto'
-import { UpdateProdutoDto } from './dto/update-produto.dto'
+import { CreateProdutoDto } from './dtos/create-produto.dto'
+import { DeleteProdutoDto } from './dtos/delete-produto.dto'
+import { GetProdutoDto } from './dtos/get-produto.dto'
+import { UpdateProdutoDto } from './dtos/update-produto.dto'
 import { ProdutoService } from './produto.service'
 
 @Controller('produto')

@@ -1,10 +1,10 @@
 import { Body, Controller, Delete, Get, NotFoundException, Post, Put, Query } from '@nestjs/common'
 import { hash } from 'argon2'
 import { omit } from 'lodash'
-import { CreateUserDto } from './dto/create-user.dto'
-import { DeleteUserDto } from './dto/delete-user.dto'
-import { GetUserDto } from './dto/get-user.dto'
-import { UpdateUserDto } from './dto/update-user.dto'
+import { CreateUserDto } from './dtos/create-user.dto'
+import { DeleteUserDto } from './dtos/delete-user.dto'
+import { GetUserDto } from './dtos/get-user.dto'
+import { UpdateUserDto } from './dtos/update-user.dto'
 import { UsuarioService } from './usuario.service'
 
 @Controller('usuario')
