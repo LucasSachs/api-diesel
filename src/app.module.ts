@@ -6,6 +6,7 @@ import { databaseConnectionConfig } from './database/connection'
 import { CidadeModule } from './resource/cidade/cidade.module'
 import { ClienteModule } from './resource/cliente/cliente.module'
 import { ProdutoModule } from './resource/produto/produto.module'
+import { ServicoModule } from './resource/servico/servico.module'
 import { UfModule } from './resource/uf/uf.module'
 import { UsuarioModule } from './resource/usuario/usuario.module'
 
@@ -20,6 +21,7 @@ import { UsuarioModule } from './resource/usuario/usuario.module'
     ClienteModule,
     CidadeModule,
     UfModule,
+    ServicoModule,
   ],
 })
 export class AppModule {}
