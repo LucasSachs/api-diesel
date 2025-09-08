@@ -3,7 +3,7 @@ import { CidadeService } from '../cidade/cidade.service'
 import { UfService } from '../uf/uf.service'
 import { ClienteService } from './cliente.service'
 import { CreateClienteDto } from './dtos/create-cliente.dto'
-import type { DeleteClienteDto } from './dtos/delete-cliente.dto'
+import { DeleteClienteDto } from './dtos/delete-cliente.dto'
 import { GetClienteDto } from './dtos/get-cliente.dto'
 import { UpdateClienteDto } from './dtos/update-cliente.dto'
 

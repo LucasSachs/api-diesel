@@ -3,7 +3,7 @@ import { Cliente } from '../cliente/cliente.entity'
 import { Endereco } from '../endereco/endereco.entity'
 
 export class PropriedadeRelations {
-  @ManyToOne(() => Cliente, cliente => cliente.propriedades)
+  @ManyToOne(() => Cliente, cliente => cliente.propriedades, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'cliente_id' })
   cliente: Cliente
 
