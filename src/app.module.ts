@@ -9,6 +9,7 @@ import { ProdutoModule } from './resource/produto/produto.module'
 import { ServicoModule } from './resource/servico/servico.module'
 import { UfModule } from './resource/uf/uf.module'
 import { UsuarioModule } from './resource/usuario/usuario.module'
+import { OrdemServicoModule } from './resource/ordem-servico/ordem-servico.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { UsuarioModule } from './resource/usuario/usuario.module'
     CidadeModule,
     UfModule,
     ServicoModule,
+    OrdemServicoModule,
   ],
 })
 export class AppModule {}
