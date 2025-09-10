@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, NotFoundException, Post, Put, Query } from '@nestjs/common'
-import type { CreateOrdemServicoDto } from './dto/create-ordem-servico.dto'
-import type { DeleteOrdemServicoDto } from './dto/delete-ordem-servico.dto'
-import type { GetOrdemServicoDto } from './dto/get-ordem-servico.dto'
-import type { UpdateOrdemServicoDto } from './dto/update-ordem-servico.dto'
+import { CreateOrdemServicoDto } from './dto/create-ordem-servico.dto'
+import { DeleteOrdemServicoDto } from './dto/delete-ordem-servico.dto'
+import { GetOrdemServicoDto } from './dto/get-ordem-servico.dto'
+import { UpdateOrdemServicoDto } from './dto/update-ordem-servico.dto'
 import { OrdemServicoService } from './ordem-servico.service'
 
 @Controller('ordem-servico')

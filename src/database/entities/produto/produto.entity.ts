@@ -26,4 +26,7 @@ export class Produto extends ProdutoRelations {
     nullable: true,
   })
   tamanho_tanque?: number
+
+  @Column({ unsigned: true })
+  valor: number
 }

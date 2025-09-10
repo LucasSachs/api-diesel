@@ -3,7 +3,9 @@ import { IsOptional, IsPositive, IsStrongPassword } from 'class-validator'
 import { CreateUserDto } from './create-user.dto'
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {
-  @IsPositive()
+  @IsPositive({
+    message: 'O número informado é inválido',
+  })
   id: number
 
   @IsOptional()

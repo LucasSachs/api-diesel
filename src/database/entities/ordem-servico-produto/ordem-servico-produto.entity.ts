@@ -18,4 +18,7 @@ export class OrdemServicoProduto extends OrdemServicoProdutoRelations {
     unsigned: true,
   })
   quantidade: number
+
+  @Column({ unsigned: true })
+  valor: number
 }

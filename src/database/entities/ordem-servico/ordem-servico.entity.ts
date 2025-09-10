@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm'
 import { OrdemServicoRelations } from './ordem-servico.relations'
 
-enum Status {
+export enum Status {
   ANDAMENTO = 'Em andamento',
   CONCLUIDA = 'Concluida',
 }

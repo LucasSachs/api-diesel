@@ -17,4 +17,9 @@ export class CreateProdutoDto {
     message: 'O tamanho do tanque informado é inválido',
   })
   tamanho_tanque?: number
+
+  @IsPositive({
+    message: 'Valor do produto inválido',
+  })
+  valor: number
 }

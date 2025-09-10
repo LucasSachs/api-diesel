@@ -5,7 +5,9 @@ import { CreateUserDto } from './create-user.dto'
 
 export class GetUserDto extends PartialType(CreateUserDto) {
   @IsOptional()
-  @IsPositive()
+  @IsPositive({
+    message: 'O número informado é inválido',
+  })
   @Type(() => Number)
   id?: number
 
