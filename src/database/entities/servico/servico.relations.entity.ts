@@ -2,7 +2,10 @@ import { JoinTable, ManyToMany } from 'typeorm'
 import { OrdemServico } from '../ordem-servico/ordem-servico.entity'
 
 export default class ServicoRelations {
-  @ManyToMany(() => OrdemServico, ordem_servico => ordem_servico.servicos)
+  @ManyToMany(() => OrdemServico, ordem_servico => ordem_servico.servicos, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
   @JoinTable({
     name: 'ordem_servico_servico',
     joinColumn: { name: 'servico_id' },

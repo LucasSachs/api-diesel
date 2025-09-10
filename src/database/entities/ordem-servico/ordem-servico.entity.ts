@@ -17,8 +17,11 @@ export class OrdemServico extends OrdemServicoRelations {
   @CreateDateColumn()
   created_at: Date
 
-  @Column({ type: 'text' })
-  descricao: string
+  @Column({
+    type: 'text',
+    nullable: true,
+  })
+  descricao: string | null
 
   @Column({
     type: 'enum',
@@ -31,7 +34,4 @@ export class OrdemServico extends OrdemServicoRelations {
 
   @Column({ unsigned: true })
   valor_mo: number
-
-  @Column({ unsigned: true })
-  valor_produtos: number
 }

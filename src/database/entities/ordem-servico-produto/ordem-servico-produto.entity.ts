@@ -14,7 +14,8 @@ export class OrdemServicoProduto extends OrdemServicoProdutoRelations {
 
   @Column({
     type: 'decimal',
-    precision: 2,
+    precision: 10,
+    scale: 3,
     unsigned: true,
   })
   quantidade: number
