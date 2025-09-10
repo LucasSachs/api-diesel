@@ -5,7 +5,9 @@ import { CreateServicoDto } from './create-servico.dto'
 
 export class GetServicoDto extends PartialType(CreateServicoDto) {
   @IsOptional()
-  @IsPositive()
+  @IsPositive({
+    message: 'O ID informado é inválido',
+  })
   @Type(() => Number)
   id?: number
 }
