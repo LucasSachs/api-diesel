@@ -5,10 +5,14 @@ import { UpdatePropriedadeDto } from 'src/resource/propriedade/dtos/update-propr
 import { CreateClienteDto } from './create-cliente.dto'
 
 export class UpdateClienteDto extends PartialType(OmitType(CreateClienteDto, ['propriedades'] as const)) {
-  @IsPositive()
+  @IsPositive({
+    message: 'O ID informado é inválido',
+  })
   id: number
 
-  @IsArray()
+  @IsArray({
+    message: 'As propriedades informadas são inválidas',
+  })
   @ValidateNested({ each: true })
   @Type(() => UpdatePropriedadeDto)
   propriedades: UpdatePropriedadeDto[]

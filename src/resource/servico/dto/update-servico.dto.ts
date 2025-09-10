@@ -3,6 +3,8 @@ import { IsPositive } from 'class-validator'
 import { CreateServicoDto } from './create-servico.dto'
 
 export class UpdateServicoDto extends PartialType(CreateServicoDto) {
-  @IsPositive()
+  @IsPositive({
+    message: 'O ID informado é inválido',
+  })
   id: number
 }

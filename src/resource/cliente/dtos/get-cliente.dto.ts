@@ -5,7 +5,9 @@ import { CreateClienteDto } from './create-cliente.dto'
 
 export class GetClienteDto extends PartialType(CreateClienteDto) {
   @IsOptional()
-  @IsPositive()
+  @IsPositive({
+    message: 'O ID informado é inválido',
+  })
   @Type(() => Number)
   id?: number
 }

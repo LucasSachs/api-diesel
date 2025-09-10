@@ -1,6 +1,11 @@
 import { IsEmail } from 'class-validator'
 
 export class CreateClienteEmail {
-  @IsEmail()
+  @IsEmail(
+    {},
+    {
+      message: 'O e-mail informado é inválido',
+    },
+  )
   descricao: string
 }

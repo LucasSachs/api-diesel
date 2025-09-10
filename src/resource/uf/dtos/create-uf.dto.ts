@@ -1,6 +1,8 @@
 import { Length } from 'class-validator'
 
 export class CreateUfDto {
-  @Length(3, 255)
+  @Length(2, 2, {
+    message: 'A UF deve ter $constraint1 caracteres',
+  })
   descricao: string
 }

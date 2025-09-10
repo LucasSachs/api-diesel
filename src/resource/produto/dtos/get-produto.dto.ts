@@ -5,7 +5,9 @@ import { CreateProdutoDto } from './create-produto.dto'
 
 export class GetProdutoDto extends PartialType(CreateProdutoDto) {
   @IsOptional()
-  @IsPositive()
+  @IsPositive({
+    message: 'O ID informado é inválido',
+  })
   @Type(() => Number)
   id?: number
 
