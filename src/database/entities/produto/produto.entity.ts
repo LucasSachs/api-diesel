@@ -22,11 +22,15 @@ export class Produto extends ProdutoRelations {
   nome: string
 
   @Column({
+    type: 'float',
     unsigned: true,
     nullable: true,
   })
   tamanho_tanque?: number
 
-  @Column({ unsigned: true })
+  @Column({
+    type: 'float',
+    unsigned: true,
+  })
   valor: number
 }

@@ -35,9 +35,19 @@ export class OrdemServico extends OrdemServicoRelations {
   })
   status: Status
 
-  @Column({ unsigned: true })
+  @Column({
+    type: 'decimal',
+    precision: 10,
+    scale: 2,
+    unsigned: true,
+  })
   valor_deslocamento: number
 
-  @Column({ unsigned: true })
+  @Column({
+    type: 'decimal',
+    precision: 10,
+    scale: 2,
+    unsigned: true,
+  })
   valor_mo: number
 }

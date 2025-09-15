@@ -6,18 +6,24 @@ export class Endereco extends EnderecoRelations {
   @PrimaryGeneratedColumn({ unsigned: true })
   id: number
 
-  @Column({ unsigned: true })
-  cidade_id: number
+  @Column({
+    unsigned: true,
+    nullable: true,
+  })
+  cidade_id?: number
 
-  @Column({ unsigned: true })
-  uf_id: number
+  @Column({
+    unsigned: true,
+    nullable: true,
+  })
+  uf_id?: number
 
   @Column({
     type: 'varchar',
     length: 8,
     nullable: true,
   })
-  cep: string
+  cep?: string
 
   @Column({
     type: 'varchar',
@@ -26,12 +32,22 @@ export class Endereco extends EnderecoRelations {
   })
   complemento?: string
 
-  @Column()
-  lat: number
+  @Column({
+    type: 'decimal',
+    precision: 8,
+    scale: 6,
+    nullable: true,
+  })
+  lat?: number
 
-  @Column()
-  long: number
+  @Column({
+    type: 'decimal',
+    precision: 8,
+    scale: 6,
+    nullable: true,
+  })
+  long?: number
 
   @Column({ nullable: true })
-  numero: number
+  numero?: number
 }

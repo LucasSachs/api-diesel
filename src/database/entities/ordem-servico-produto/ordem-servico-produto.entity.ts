@@ -13,9 +13,7 @@ export class OrdemServicoProduto extends OrdemServicoProdutoRelations {
   produto_id: number
 
   @Column({
-    type: 'decimal',
-    precision: 10,
-    scale: 3,
+    type: 'float',
     unsigned: true,
   })
   quantidade: number

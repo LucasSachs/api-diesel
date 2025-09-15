@@ -31,6 +31,12 @@ export class ProdutoService {
     return savedProduto
   }
 
+  async insert(produtos: DeepPartial<Produto>[]) {
+    const savedProdutos = await this.produtoRepository.insert(produtos)
+
+    return savedProdutos
+  }
+
   async delete(id: number) {
     const deletedProduto = await this.produtoRepository.delete(id)
 

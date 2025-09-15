@@ -12,7 +12,7 @@ export class ServicoService {
   async find(filters: FindManyOptions<Servico>) {
     const whereOptions = filters.where as FindOptionsWhere<Servico>
 
-    const servico = this.servicoRepository.find({
+    const servico = await this.servicoRepository.find({
       ...filters,
       where: {
         ...whereOptions,
@@ -25,9 +25,15 @@ export class ServicoService {
   }
 
   async save(servico: DeepPartial<Servico>) {
-    const savedServico = this.servicoRepository.save(servico)
+    const savedServico = await this.servicoRepository.save(servico)
 
     return savedServico
+  }
+
+  async insert(servicos: DeepPartial<Servico>[]) {
+    const savedServicos = await this.servicoRepository.insert(servicos)
+
+    return savedServicos
   }
 
   async deleteServico(id: number) {
