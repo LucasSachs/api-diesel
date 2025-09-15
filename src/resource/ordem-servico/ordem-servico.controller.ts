@@ -28,6 +28,7 @@ export class OrdemServicoController {
         'ordem_servico_produtos.produto',
         'servicos',
         'propriedade',
+        'usuarios',
       ],
     })
 
@@ -39,6 +40,7 @@ export class OrdemServicoController {
     const createdNewOrdemServico = await this.ordemServicoService.save({
       ...newOrdemServico,
       servicos: newOrdemServico.servicos.map((servico) => { return { id: servico } }),
+      usuarios: newOrdemServico.usuarios.map((usuario) => { return { id: usuario } }),
     })
 
     return createdNewOrdemServico
@@ -49,6 +51,7 @@ export class OrdemServicoController {
     const newUpdatedOrdemServico = await this.ordemServicoService.save({
       ...updatedOrdemServico,
       servicos: updatedOrdemServico.servicos?.map((servico) => { return { id: servico } }),
+      usuarios: updatedOrdemServico.usuarios?.map((usuario) => { return { id: usuario } }),
     })
 
     return newUpdatedOrdemServico

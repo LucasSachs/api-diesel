@@ -31,4 +31,9 @@ export class CreateOrdemServicoDto {
   @IsNumber({}, { each: true, message: 'Cada serviço deve ser um número' })
   @ArrayMinSize(1, { message: 'Uma ordem de serviço deve ter pelo menos um serviço' })
   servicos: number[]
+
+  @IsArray({ message: 'Os usuários devem ser enviados como uma array' })
+  @IsNumber({}, { each: true, message: 'Cada id de usuário deve ser um número' })
+  @ArrayMinSize(1, { message: 'Uma ordem de serviço deve ter pelo menos um usuário responsável' })
+  usuarios: number[]
 }
