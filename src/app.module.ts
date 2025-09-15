@@ -5,11 +5,11 @@ import { AuthModule } from './auth/auth.module'
 import { databaseConnectionConfig } from './database/connection'
 import { CidadeModule } from './resource/cidade/cidade.module'
 import { ClienteModule } from './resource/cliente/cliente.module'
+import { OrdemServicoModule } from './resource/ordem-servico/ordem-servico.module'
 import { ProdutoModule } from './resource/produto/produto.module'
 import { ServicoModule } from './resource/servico/servico.module'
 import { UfModule } from './resource/uf/uf.module'
 import { UsuarioModule } from './resource/usuario/usuario.module'
-import { OrdemServicoModule } from './resource/ordem-servico/ordem-servico.module';
 
 @Module({
   imports: [
