@@ -1,8 +1,9 @@
-import { JoinColumn, ManyToMany, ManyToOne, OneToMany } from 'typeorm'
+import { JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany } from 'typeorm'
 import { Nota } from '../nota/nota.entity'
 import { OrdemServicoProduto } from '../ordem-servico-produto/ordem-servico-produto.entity'
 import { Propriedade } from '../propriedade/propriedade.entity'
 import { Servico } from '../servico/servico.entity'
+import { Usuario } from '../usuario/usuario.entity'
 
 export class OrdemServicoRelations {
   @OneToMany(() => Nota, nota => nota.ordem_servico, { onDelete: 'CASCADE' })
@@ -17,4 +18,12 @@ export class OrdemServicoRelations {
   @ManyToOne(() => Propriedade, propriedade => propriedade.ordens_servico)
   @JoinColumn({ name: 'propriedade_id' })
   propriedade: Propriedade
+
+  @ManyToMany(() => Usuario, usuario => usuario.ordens_servico)
+  @JoinTable({
+    name: 'ordem_servico_usuarios',
+    joinColumn: { name: 'ordem_servico_id' },
+    inverseJoinColumn: { name: 'usuario_id' },
+  })
+  usuarios: Usuario[]
 }
