@@ -4,6 +4,7 @@ import { hash } from 'argon2'
 import type { ClienteEmail } from 'src/database/entities/cliente-email/cliente-email.entity'
 import type { ClienteTelefone } from 'src/database/entities/cliente-telefone/cliente-telefone.entity'
 import type { Cliente } from 'src/database/entities/cliente/cliente.entity'
+import type { Propriedade } from 'src/database/entities/propriedade/propriedade.entity'
 import { Cargo, Status, type Usuario } from 'src/database/entities/usuario/usuario.entity'
 import { ClienteService } from 'src/resource/cliente/cliente.service'
 import { ProdutoService } from 'src/resource/produto/produto.service'
@@ -137,7 +138,18 @@ export class DatabaseSeederService {
       const amountTelefones = faker.number.int({ min: 1, max: 3 })
       const telefones: Partial<ClienteTelefone>[] = Array.from({ length: amountTelefones }).map(() => {
         return {
-          descricao: faker.phone.number({ style: 'international' }).slice(-9),
+          descricao: '9'.concat(faker.phone.number({ style: 'international' }).slice(-8)),
+        }
+      })
+
+      const amountPropriedades = faker.number.int({ min: 1, max: 3 })
+      const propriedades: DeepPartial<Propriedade>[] = Array.from({ length: amountPropriedades }).map(() => {
+        return {
+          cadpro: String(faker.number.int({ min: 10000000000, max: 99999999999 })),
+          endereco: {
+            lat: faker.location.latitude({ precision: 6 }),
+            long: faker.location.longitude({ precision: 6 }),
+          },
         }
       })
 
@@ -146,6 +158,7 @@ export class DatabaseSeederService {
         cpf_cnpj: String(faker.number.int({ min: 10000000000, max: 99999999999 })),
         emails,
         telefones,
+        propriedades,
       }
 
       const savedCliente = await this.clienteService.save(cliente)

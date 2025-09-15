@@ -34,7 +34,7 @@ export class Endereco extends EnderecoRelations {
 
   @Column({
     type: 'decimal',
-    precision: 8,
+    precision: 9,
     scale: 6,
     nullable: true,
   })
@@ -42,7 +42,7 @@ export class Endereco extends EnderecoRelations {
 
   @Column({
     type: 'decimal',
-    precision: 8,
+    precision: 9,
     scale: 6,
     nullable: true,
   })
