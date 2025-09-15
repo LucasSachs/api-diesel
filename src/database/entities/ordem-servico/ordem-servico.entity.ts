@@ -18,6 +18,12 @@ export class OrdemServico extends OrdemServicoRelations {
   created_at: Date
 
   @Column({
+    type: 'datetime',
+    nullable: true,
+  })
+  dt_concluida: Date
+
+  @Column({
     type: 'text',
     nullable: true,
   })
