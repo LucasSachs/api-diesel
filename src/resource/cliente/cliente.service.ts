@@ -21,6 +21,12 @@ export class ClienteService {
     return savedCliente
   }
 
+  async insert(clientes: DeepPartial<Cliente>[]) {
+    const savedClientes = await this.clienteRepository.insert(clientes)
+
+    return savedClientes
+  }
+
   async delete(id: number) {
     const deletedCliente = await this.clienteRepository.delete(id)
 

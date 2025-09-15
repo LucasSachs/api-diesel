@@ -9,6 +9,7 @@ import { ClienteService } from './cliente.service'
 @Module({
   controllers: [ClienteController],
   providers: [ClienteService],
+  exports: [ClienteService],
   imports: [
     TypeOrmModule.forFeature([Cliente]),
     CidadeModule,
