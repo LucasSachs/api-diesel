@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { JwtService, JwtVerifyOptions } from '@nestjs/jwt'
 import 'dotenv/config'
 import type { UserAccessToken } from 'src/auth/utils/auth.types'
-import { InvalidTokenException } from './errors/token.exception.invalid'
+import { InvalidTokenException } from '../errors/token.exception.invalid'
 
 export const PUBLIC_KEY = process.env.PUBLIC_KEY
 export const PRIVATE_KEY = process.env.PRIVATE_KEY

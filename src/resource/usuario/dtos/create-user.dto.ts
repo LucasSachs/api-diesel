@@ -29,12 +29,8 @@ export class CreateUserDto {
 
   @Type(() => Date)
   @IsDate({ message: 'A data de nascimento deve ser uma data válida' })
-  @MinDate(subYears(new Date(), 100), {
-    message: 'O funcionário deve ter no máximo 100 anos',
-  })
-  @MaxDate(subYears(new Date(), 18), {
-    message: 'O funcionário deve ter pelo menos 18 anos',
-  })
+  @MinDate(subYears(new Date(), 100), { message: 'O funcionário deve ter no máximo 100 anos' })
+  @MaxDate(subYears(new Date(), 18), { message: 'O funcionário deve ter pelo menos 18 anos' })
   data_nascimento: Date
 
   @Length(11, 11, {
