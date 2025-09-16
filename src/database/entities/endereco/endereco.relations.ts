@@ -12,6 +12,6 @@ export class EnderecoRelations {
   @JoinColumn({ name: 'uf_id' })
   uf: Uf
 
-  @OneToOne(() => Propriedade, propriedade => propriedade.endereco)
+  @OneToOne(() => Propriedade, propriedade => propriedade.endereco, { orphanedRowAction: 'delete' })
   propriedade: Propriedade
 }

@@ -1,17 +1,13 @@
 import { Type } from 'class-transformer'
-import { IsDefined, Length, ValidateNested } from 'class-validator'
+import { Length, ValidateNested } from 'class-validator'
 import { CreateEnderecoDto } from 'src/resource/endereco/dtos/create-endereco.dto'
 
 export class CreatePropriedadeDto {
-  @Length(11, 11, {
-    message: 'O CADPRO deve ter $constraint1 caracteres',
-  })
+  @Length(11, 11, { message: 'O CADPRO deve ter 11 caracteres' })
   cadpro: string
 
-  @IsDefined({
-    message: 'O endereço informado é inválido',
-  })
-  @ValidateNested()
+  // @IsDefined({message: 'O endereço informado é inválido',})
   @Type(() => CreateEnderecoDto)
+  @ValidateNested()
   endereco: CreateEnderecoDto
 }

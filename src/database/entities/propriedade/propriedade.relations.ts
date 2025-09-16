@@ -4,7 +4,10 @@ import { Endereco } from '../endereco/endereco.entity'
 import { OrdemServico } from '../ordem-servico/ordem-servico.entity'
 
 export class PropriedadeRelations {
-  @ManyToOne(() => Cliente, cliente => cliente.propriedades, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Cliente, cliente => cliente.propriedades, {
+    onDelete: 'CASCADE',
+    orphanedRowAction: 'delete',
+  })
   @JoinColumn({ name: 'cliente_id' })
   cliente: Cliente
 

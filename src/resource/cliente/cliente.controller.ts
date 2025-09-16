@@ -1,4 +1,6 @@
 import { Body, Controller, Delete, Get, NotFoundException, Post, Put, Query } from '@nestjs/common'
+import type { Endereco } from 'src/database/entities/endereco/endereco.entity'
+import type { DeepPartial } from 'typeorm'
 import { CidadeService } from '../cidade/cidade.service'
 import { UfService } from '../uf/uf.service'
 import { ClienteService } from './cliente.service'
@@ -41,24 +43,30 @@ export class ClienteController {
 
     const newCreatedCliente = await this.clienteService.save({
       ...newCliente,
-      propriedades: await Promise.all(
-        newCliente.propriedades.map(async (propriedade) => {
-          let cidade = allCidades.find(c => c.descricao === propriedade.endereco.cidade.descricao)
-          let uf = allUfs.find(u => u.descricao === propriedade.endereco.uf.descricao)
+      propriedades: newCliente.propriedades
+        ? await Promise.all(
+            newCliente.propriedades.map(async (propriedade) => {
+              const updatedEndereco: DeepPartial<Endereco> = propriedade.endereco ? { ...propriedade.endereco } : {}
 
-          if (!cidade) cidade = await this.cidadeService.save(propriedade.endereco.cidade)
-          if (!uf) uf = await this.ufService.save(propriedade.endereco.uf)
+              if (propriedade.endereco?.cidade) {
+                let cidade = allCidades.find(c => c.descricao === propriedade.endereco!.cidade.descricao)
+                if (!cidade) cidade = await this.cidadeService.save({ descricao: propriedade.endereco.cidade.descricao })
+                updatedEndereco.cidade = cidade
+              }
 
-          return {
-            ...propriedade,
-            endereco: {
-              ...propriedade.endereco,
-              cidade,
-              uf,
-            },
-          }
-        }),
-      ),
+              if (propriedade.endereco?.uf) {
+                let uf = allUfs.find(u => u.descricao === propriedade.endereco!.uf.descricao)
+                if (!uf) uf = await this.ufService.save({ descricao: propriedade.endereco.uf.descricao })
+                updatedEndereco.uf = uf
+              }
+
+              return {
+                ...propriedade,
+                endereco: updatedEndereco,
+              }
+            }),
+          )
+        : [],
     })
 
     return newCreatedCliente
@@ -71,31 +79,34 @@ export class ClienteController {
       this.ufService.find(),
     ])
 
+    console.log(updatedCliente)
+
     const newUpdatedCliente = await this.clienteService.save({
       ...updatedCliente,
       propriedades: updatedCliente.propriedades
         ? await Promise.all(
             updatedCliente.propriedades.map(async (propriedade) => {
-              if (propriedade.endereco) {
+              const updatedEndereco: DeepPartial<Endereco> = propriedade.endereco ? { ...propriedade.endereco } : {}
+
+              if (propriedade.endereco?.cidade) {
                 let cidade = allCidades.find(c => c.descricao === propriedade.endereco!.cidade.descricao)
-                let uf = allUfs.find(u => u.descricao === propriedade.endereco!.uf.descricao)
-
-                if (!cidade) cidade = await this.cidadeService.save(propriedade.endereco.cidade)
-                if (!uf) uf = await this.ufService.save(propriedade.endereco.uf)
-
-                return {
-                  ...propriedade,
-                  endereco: {
-                    ...propriedade.endereco,
-                    cidade,
-                    uf,
-                  },
-                }
+                if (!cidade) cidade = await this.cidadeService.save({ descricao: propriedade.endereco.cidade.descricao })
+                updatedEndereco.cidade = cidade
               }
-              else return propriedade
+
+              if (propriedade.endereco?.uf) {
+                let uf = allUfs.find(u => u.descricao === propriedade.endereco!.uf.descricao)
+                if (!uf) uf = await this.ufService.save({ descricao: propriedade.endereco.uf.descricao })
+                updatedEndereco.uf = uf
+              }
+
+              return {
+                ...propriedade,
+                endereco: updatedEndereco,
+              }
             }),
           )
-        : undefined,
+        : [],
     })
 
     return newUpdatedCliente

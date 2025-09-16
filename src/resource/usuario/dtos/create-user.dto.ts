@@ -4,27 +4,16 @@ import { subYears } from 'date-fns'
 import { Cargo, Status } from 'src/database/entities/usuario/usuario.entity'
 
 export class CreateUserDto {
-  @IsEnum(Cargo, {
-    message: 'O cargo informado é inválido',
-  })
+  @IsEnum(Cargo, { message: 'O cargo informado é inválido' })
   cargo: Cargo
 
-  @IsEmail(
-    {},
-    {
-      message: 'O e-mail informado é inválido',
-    },
-  )
+  @IsEmail({}, { message: 'O e-mail informado é inválido' })
   email: string
 
-  @Length(3, 255, {
-    message: 'O nome deve ter entre $constraint1 e $constraint2 caracteres',
-  })
+  @Length(3, 255, { message: 'O nome deve ter entre $constraint1 e $constraint2 caracteres' })
   nome: string
 
-  @Length(9, 9, {
-    message: 'O RG deve ter $constraint1 caracteres',
-  })
+  @Length(9, 9, { message: 'O RG deve ter $constraint1 caracteres' })
   rg: string
 
   @Type(() => Date)
@@ -33,13 +22,9 @@ export class CreateUserDto {
   @MaxDate(subYears(new Date(), 18), { message: 'O funcionário deve ter pelo menos 18 anos' })
   data_nascimento: Date
 
-  @Length(11, 11, {
-    message: 'O CPF deve ter $constraint1 caracteres',
-  })
+  @Length(11, 11, { message: 'O CPF deve ter $constraint1 caracteres' })
   cpf: string
 
-  @IsEnum(Status, {
-    message: 'O status informado é inválido',
-  })
+  @IsEnum(Status, { message: 'O status informado é inválido' })
   status: Status
 }
