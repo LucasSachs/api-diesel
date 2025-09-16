@@ -18,6 +18,21 @@ Após fazer a instalação dos pacotes necessários para a execução do sistema
     pnpm build
 ```
 
+Caso você não possua um banco MySQL instalado em sua máquina(ou em um servidor), você pode iniciar um banco localmente através do Docker, usando o seguinte comando:
+
+```bash
+    docker compose up -d
+```
+
+Obs: Vale destacar que para que essa etapa dê certo, você precisa do Docker instalado em sua máquina.
+
+Dessa forma, um banco MySQL será criado automaticamente na sua máquina, e suas credenciais serão:
+
+- USUARIO = diesel
+- SENHA = diesel
+- BANCO = diesel
+- PORTA = 3306
+
 E por fim, executar o sistema em sua build de produção usando o comando:
 
 ```bash
