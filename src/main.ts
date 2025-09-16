@@ -12,6 +12,11 @@ async function bootstrap() {
     whitelist: true, // Remove fields that are not mapped in the DTO
   }))
 
+  app.enableCors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  })
+
   app.useGlobalGuards(new RolesGuard(app.get(Reflector)))
 
   await app.listen(process.env.PORT ?? 3000)
