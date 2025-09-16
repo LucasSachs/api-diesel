@@ -4,7 +4,6 @@ import { Produto } from '../produto/produto.entity'
 
 export class OrdemServicoProdutoRelations {
   @ManyToOne(() => OrdemServico, ordem_servico => ordem_servico.ordem_servico_produtos, {
-    cascade: true,
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'ordem_servico_id' })

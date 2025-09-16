@@ -9,7 +9,9 @@ export class OrdemServicoRelations {
   @OneToMany(() => Nota, nota => nota.ordem_servico, { onDelete: 'CASCADE' })
   notas: Nota[]
 
-  @OneToMany(() => OrdemServicoProduto, ordem_servico_produto => ordem_servico_produto.ordem_servico, { onDelete: 'CASCADE' })
+  @OneToMany(() => OrdemServicoProduto, ordem_servico_produto => ordem_servico_produto.ordem_servico, {
+    cascade: true,
+  })
   ordem_servico_produtos: OrdemServicoProduto[]
 
   @ManyToMany(() => Servico, servico => servico.ordens_servico, { onDelete: 'CASCADE' })
