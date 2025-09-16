@@ -13,7 +13,21 @@ export class OrdemServicoController {
 
   @Get()
   async getOrdensServico(@Query() ordemServico: GetOrdemServicoDto) {
-    const ordensServico = await this.ordemServicoService.find({ where: ordemServico })
+    const ordensServico = await this.ordemServicoService.find({
+      where: ordemServico,
+      relations: [
+        'notas',
+        'ordem_servico_produtos',
+        'ordem_servico_produtos.produto',
+        'servicos',
+        'propriedade',
+        'propriedade.cliente',
+        'propriedade.endereco',
+        'propriedade.endereco.cidade',
+        'propriedade.endereco.uf',
+        'usuarios',
+      ],
+    })
 
     return ordensServico
   }
@@ -28,6 +42,10 @@ export class OrdemServicoController {
         'ordem_servico_produtos.produto',
         'servicos',
         'propriedade',
+        'propriedade.cliente',
+        'propriedade.endereco',
+        'propriedade.endereco.cidade',
+        'propriedade.endereco.uf',
         'usuarios',
       ],
     })
