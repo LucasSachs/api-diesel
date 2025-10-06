@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer'
-import { ArrayMinSize, IsArray, IsEnum, IsNumber, IsPositive, ValidateNested } from 'class-validator'
+import { ArrayMinSize, IsArray, IsEnum, IsNumber, IsPositive, IsString, MaxLength, MinLength, ValidateNested } from 'class-validator'
 import { Status } from 'src/database/entities/ordem-servico/ordem-servico.entity'
 import { CreateOrdemServicoProdutoDto } from 'src/resource/ordem-servico-produto/dto/create-ordem-servico-produto.dto'
 
@@ -15,6 +15,11 @@ export class CreateOrdemServicoDto {
 
   @IsPositive({ message: 'ID de propriedade inválido' })
   propriedade_id: number
+
+  @IsString({ message: 'A descrição da Ordem de Serviço deve ser enviada como string' })
+  @MinLength(3, { message: 'A descrição da Ordem de Serviço deve ter pelo menos 3 caracteres' })
+  @MaxLength(255, { message: 'A descrição da Ordem de Serviço deve ter no máximo 255 caracteres' })
+  descricao: string
 
   @IsArray({ message: 'Os produtos devem ser enviados como uma array' })
   @ValidateNested({ each: true })

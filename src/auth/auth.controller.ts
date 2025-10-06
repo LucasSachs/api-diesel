@@ -2,7 +2,7 @@ import { Body, Controller, Get, HttpCode, HttpStatus, Post, UnauthorizedExceptio
 import { ConfigService } from '@nestjs/config'
 import { verify } from 'argon2'
 import { omit } from 'lodash'
-import type { Usuario } from 'src/database/entities/usuario/usuario.entity'
+import { Status, type Usuario } from 'src/database/entities/usuario/usuario.entity'
 import { TokenService } from 'src/lib/token/token.service'
 import { UsuarioService } from 'src/resource/usuario/usuario.service'
 import { Public } from './decorators/metadata/public.decorator'
@@ -36,15 +36,17 @@ export class AuthController {
     const user = await this.usuarioService.findOne({ where: { email: body.email } })
     if (!user) throw new UnauthorizedException()
 
+    if (user.status === Status.INATIVO) throw new UnauthorizedException('Essa conta foi desativada. Entre em contato com seu Administrador.')
+
     if (user.senha) {
       // Verify if the password from body coincides with the password stored in the database
       const allow = await verify(user.senha, body.password)
-      if (!allow) throw new UnauthorizedException()
+      if (!allow) throw new UnauthorizedException('Credenciais inválidas')
     }
     else {
       // If user does not have a password, check if body password is equal to the default password
       const allow = body.password === this.configService.get('USER_DEFAULT_PASSWORD') as string
-      if (!allow) throw new UnauthorizedException()
+      if (!allow) throw new UnauthorizedException('Credenciais inválidas')
     }
 
     const payload: Omit<UserAccessToken, 'iat' | 'exp'> = {

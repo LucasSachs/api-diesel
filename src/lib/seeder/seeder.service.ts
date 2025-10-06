@@ -138,14 +138,14 @@ export class DatabaseSeederService {
       const amountTelefones = faker.number.int({ min: 1, max: 3 })
       const telefones: Partial<ClienteTelefone>[] = Array.from({ length: amountTelefones }).map(() => {
         return {
-          descricao: '9'.concat(faker.phone.number({ style: 'international' }).slice(-8)),
+          descricao: '429'.concat(faker.phone.number({ style: 'international' }).slice(-8)),
         }
       })
 
       const amountPropriedades = faker.number.int({ min: 1, max: 3 })
       const propriedades: DeepPartial<Propriedade>[] = Array.from({ length: amountPropriedades }).map(() => {
         return {
-          cadpro: String(faker.number.int({ min: 10000000000, max: 99999999999 })),
+          cadpro: String(faker.number.int({ min: 1000000000, max: 9999999999 })),
           endereco: {
             lat: faker.location.latitude({ precision: 6 }),
             long: faker.location.longitude({ precision: 6 }),
