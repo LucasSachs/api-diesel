@@ -1,6 +1,7 @@
 services:
   mysql:
     image: bitnami/mysql:latest
+    container_name: "MySQL"
     environment:
       - MYSQL_USER=diesel
       - MYSQL_PASSWORD=diesel
@@ -8,3 +9,8 @@ services:
       - ALLOW_EMPTY_PASSWORD=yes
     ports:
       - "3306:3306"
+    volumes:
+      - MySQL:/bitnami/mysql
+
+volumes:
+  MySQL:
