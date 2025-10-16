@@ -6,6 +6,7 @@ services:
       - MYSQL_USER=diesel
       - MYSQL_PASSWORD=diesel
       - MYSQL_DATABASE=diesel
+      - TZ=America/Sao_Paulo
       - ALLOW_EMPTY_PASSWORD=yes
     ports:
       - "3306:3306"

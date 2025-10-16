@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put, Query } from '@nestjs/common'
+import { MoreThan } from 'typeorm'
 import { CreateOrdemServicoDto } from './dto/create-ordem-servico.dto'
 import { DeleteOrdemServicoDto } from './dto/delete-ordem-servico.dto'
 import { GetOrdemServicoDto } from './dto/get-ordem-servico.dto'
@@ -14,7 +15,9 @@ export class OrdemServicoController {
   @Get()
   async getOrdensServico(@Query() ordemServico: GetOrdemServicoDto) {
     const ordensServico = await this.ordemServicoService.find({
-      where: ordemServico,
+      where: {
+        created_at: ordemServico.date ? MoreThan(ordemServico.date) : undefined,
+      },
       relations: [
         'notas',
         'ordem_servico_produtos',

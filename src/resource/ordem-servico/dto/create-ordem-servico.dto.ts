@@ -13,11 +13,6 @@ export class CreateOrdemServicoDto {
   @IsPositive({ message: 'Valor de mão de obra inválido' })
   valor_mo: number
 
-  @IsString({ message: 'A ordem de serviço deve ser enviada como string' })
-  @MinLength(3, { message: 'A descrição da Ordem de Serviço deve ter pelo menos 3 caracteres' })
-  @MaxLength(255, { message: 'A descrição da Ordem de Serviço deve ter no máximo 255 caracteres' })
-  descricao: string
-
   @IsPositive({ message: 'ID de propriedade inválido' })
   propriedade_id: number
 
