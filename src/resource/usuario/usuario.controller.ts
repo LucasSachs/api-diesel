@@ -22,6 +22,10 @@ export class UsuarioController {
 
   @Post()
   async createNewUser(@Body() newUser: CreateUserDto) {
+    // Hash password using argon2 algorithm
+    const hashedPassword = await hash(newUser.senha)
+    newUser.senha = hashedPassword
+
     const newCreatedUser = await this.usuarioService.save(newUser)
     const newUserWithoutPassword = omit(newCreatedUser, ['senha'])
 
