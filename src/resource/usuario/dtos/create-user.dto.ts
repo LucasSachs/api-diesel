@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer'
-import { IsDate, IsEmail, IsEnum, Length, MaxDate, MinDate } from 'class-validator'
+import { IsDate, IsEmail, IsEnum, IsStrongPassword, Length, MaxDate, MinDate } from 'class-validator'
 import { subYears } from 'date-fns'
 import { Cargo, Status } from 'src/database/entities/usuario/usuario.entity'
 
@@ -27,4 +27,7 @@ export class CreateUserDto {
 
   @IsEnum(Status, { message: 'O status informado é inválido' })
   status: Status
+
+  @IsStrongPassword({}, { message: 'A senha deve ser forte' })
+  senha: string
 }
