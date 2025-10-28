@@ -60,8 +60,8 @@ export class OrdemServicoController {
   async createNewOrdemServico(@Body() newOrdemServico: CreateOrdemServicoDto) {
     const createdNewOrdemServico = await this.ordemServicoService.save({
       ...newOrdemServico,
-      servicos: newOrdemServico.servicos.map((servico) => { return { id: servico } }),
-      usuarios: newOrdemServico.usuarios.map((usuario) => { return { id: usuario } }),
+      servicos: newOrdemServico.servicos.map(servico => ({ id: servico })),
+      usuarios: newOrdemServico.usuarios.map(usuario => ({ id: usuario })),
     })
 
     return createdNewOrdemServico
@@ -71,8 +71,8 @@ export class OrdemServicoController {
   async updateOrdemServico(@Body() updatedOrdemServico: UpdateOrdemServicoDto) {
     const newUpdatedOrdemServico = await this.ordemServicoService.save({
       ...updatedOrdemServico,
-      servicos: updatedOrdemServico.servicos?.map((servico) => { return { id: servico } }),
-      usuarios: updatedOrdemServico.usuarios?.map((usuario) => { return { id: usuario } }),
+      servicos: updatedOrdemServico.servicos?.map(servico => ({ id: servico })),
+      usuarios: updatedOrdemServico.usuarios?.map(usuario => ({ id: usuario })),
     })
 
     return newUpdatedOrdemServico

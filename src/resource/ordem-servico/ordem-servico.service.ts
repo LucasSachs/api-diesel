@@ -9,8 +9,8 @@ export class OrdemServicoService {
     @InjectRepository(OrdemServico) private readonly ordemServicoRepository: Repository<OrdemServico>,
   ) {}
 
-  async find(filters: FindManyOptions<OrdemServico>) {
-    const whereOptions = filters.where as FindOptionsWhere<OrdemServico>
+  async find(filters?: FindManyOptions<OrdemServico>) {
+    const whereOptions = filters?.where as FindOptionsWhere<OrdemServico>
 
     const ordensServico = await this.ordemServicoRepository.find({
       ...filters,

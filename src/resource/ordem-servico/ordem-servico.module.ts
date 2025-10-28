@@ -8,5 +8,6 @@ import { OrdemServicoService } from './ordem-servico.service'
   imports: [TypeOrmModule.forFeature([OrdemServico])],
   controllers: [OrdemServicoController],
   providers: [OrdemServicoService],
+  exports: [OrdemServicoService],
 })
 export class OrdemServicoModule {}
