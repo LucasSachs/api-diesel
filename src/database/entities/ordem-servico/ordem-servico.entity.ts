@@ -3,6 +3,8 @@ import { OrdemServicoRelations } from './ordem-servico.relations'
 
 export enum Status {
   ANDAMENTO = 'Em andamento',
+  PENDENTE = 'Pendente',
+  CANCELADA = 'Cancelada',
   CONCLUIDA = 'Concluida',
 }
 
