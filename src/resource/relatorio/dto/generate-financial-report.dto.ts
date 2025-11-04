@@ -4,5 +4,5 @@ import { IsPositive } from 'class-validator'
 export class GenerateFinancialReportDto {
   @Type(() => Number)
   @IsPositive()
-  months: number
+  days: number
 }

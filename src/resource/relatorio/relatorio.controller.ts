@@ -3,7 +3,7 @@ import { GenerateFinancialReportDto } from './dto/generate-financial-report.dto'
 import { generateProdutosReportDto } from './dto/generate-produtos-report.dto'
 
 import { Controller, Get, Query } from '@nestjs/common'
-import { subDays, subMonths } from 'date-fns'
+import { subDays } from 'date-fns'
 import { MoreThanOrEqual } from 'typeorm'
 
 @Controller('relatorio')
@@ -13,7 +13,7 @@ export class RelatorioController {
   @Get('financeiro')
   async generateFinancialReport(@Query() dto: GenerateFinancialReportDto) {
     const nowDate = new Date()
-    const from = subMonths(nowDate, dto.months)
+    const from = subDays(nowDate, dto.days)
 
     const data = await this.ordemServicoService.find({
       where: { created_at: MoreThanOrEqual(from) },
@@ -88,6 +88,10 @@ export class RelatorioController {
       medio: produto.sumWeighted / produto.quantidade,
     }))
 
-    return result
+    return {
+      from,
+      to: nowDate,
+      produtos: result,
+    }
   }
 }
