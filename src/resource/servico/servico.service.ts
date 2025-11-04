@@ -1,13 +1,19 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Servico } from 'src/database/entities/servico/servico.entity'
-import { ILike, type DeepPartial, type FindManyOptions, type FindOptionsWhere, type Repository } from 'typeorm'
+import { ILike, type DeepPartial, type FindManyOptions, type FindOneOptions, type FindOptionsWhere, type Repository } from 'typeorm'
 
 @Injectable()
 export class ServicoService {
   constructor(
     @InjectRepository(Servico) private readonly servicoRepository: Repository<Servico>,
   ) {}
+
+  async findOne(filters: FindOneOptions<Servico>) {
+    const servico = await this.servicoRepository.findOne(filters)
+
+    return servico
+  }
 
   async find(filters: FindManyOptions<Servico>) {
     const whereOptions = filters.where as FindOptionsWhere<Servico>

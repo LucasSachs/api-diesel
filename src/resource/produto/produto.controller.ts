@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, NotFoundException, Post, Put, Query } from '@nestjs/common'
+import { BadRequestException, Body, Controller, Delete, Get, NotFoundException, Post, Put, Query } from '@nestjs/common'
 import { CreateProdutoDto } from './dtos/create-produto.dto'
 import { DeleteProdutoDto } from './dtos/delete-produto.dto'
 import { GetProdutoDto } from './dtos/get-produto.dto'
@@ -20,6 +20,9 @@ export class ProdutoController {
 
   @Post()
   async createNewProduto(@Body() newProduto: CreateProdutoDto) {
+    const existingProduto = await this.produtoService.findOne({ where: { nome: newProduto.nome } })
+    if (existingProduto) throw new BadRequestException('Já existe um produto cadastrado com esse mesmo nome.')
+
     const createdNewProduto = await this.produtoService.save(newProduto)
 
     return createdNewProduto
@@ -34,6 +37,14 @@ export class ProdutoController {
 
   @Delete()
   async deleteProduto(@Body() { id }: DeleteProdutoDto) {
+    const produto = await this.produtoService.findOne({
+      where: { id },
+      relations: ['ordem_servico_produto'],
+    })
+
+    if (!produto) throw new NotFoundException('No produto deleted')
+    if (produto.ordem_servico_produto.length > 0) throw new BadRequestException('Esse produto está sendo utilizado em outras ordens de serviço, portanto não pode ser excluído')
+
     const deletedProduto = await this.produtoService.delete(id)
 
     const success = Boolean(deletedProduto.affected)

@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Post, Put, Query } from '@nestjs/common'
+import { BadRequestException, Body, Controller, Delete, Get, Post, Put, Query } from '@nestjs/common'
 import { CreateServicoDto } from './dto/create-servico.dto'
 import { DeleteServicoDto } from './dto/delete-servico.dto'
 import { GetServicoDto } from './dto/get-servico.dto'
@@ -18,6 +18,9 @@ export class ServicoController {
 
   @Post()
   async createNewServico(@Body() newServico: CreateServicoDto) {
+    const existingServico = await this.servicoService.findOne({ where: { nome: newServico.nome } })
+    if (existingServico) throw new BadRequestException('Já existe um serviço com esse mesmo nome')
+
     const newCreatedServico = await this.servicoService.save(newServico)
 
     return newCreatedServico

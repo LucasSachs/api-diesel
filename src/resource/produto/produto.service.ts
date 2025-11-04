@@ -1,13 +1,19 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Produto } from 'src/database/entities/produto/produto.entity'
-import { ILike, MoreThanOrEqual, type DeepPartial, type FindManyOptions, type FindOptionsWhere, type Repository } from 'typeorm'
+import { ILike, MoreThanOrEqual, type DeepPartial, type FindManyOptions, type FindOneOptions, type FindOptionsWhere, type Repository } from 'typeorm'
 
 @Injectable()
 export class ProdutoService {
   constructor(
     @InjectRepository(Produto) private readonly produtoRepository: Repository<Produto>,
   ) {}
+
+  async findOne(filter: FindOneOptions<Produto>) {
+    const produto = await this.produtoRepository.findOne(filter)
+
+    return produto
+  }
 
   async get(filters: FindManyOptions<Produto>) {
     const whereOptions = filters.where as FindOptionsWhere<Produto>
