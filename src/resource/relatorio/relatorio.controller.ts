@@ -67,7 +67,7 @@ export class RelatorioController {
             nome,
             quantidade: 0,
             total: 0,
-            min: 0,
+            min: Infinity,
             sumWeighted: 0,
           }
         }
